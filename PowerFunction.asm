@@ -65,7 +65,7 @@ main:
 	li $t2 , 0
 	li $t3 , 1
 
-
+	#Arch of MIPS make this code inefficent as I didn't send the parameters in $a registers
 	jal power
 	
 		
