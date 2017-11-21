@@ -1,2 +1,2 @@
 # AssemblyTrialCodes
-Simple assembly codes by MIPS with QtSpim
+Simple assembly codes in college by MIPS with QtSpim
