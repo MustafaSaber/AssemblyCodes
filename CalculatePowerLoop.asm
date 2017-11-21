@@ -1,37 +1,12 @@
+
+#An assembly code to calculate the x^y where y is not a negative number.
 .data
 scanBase: .asciiz "Enter the base: "
 scanPower: .asciiz "Enter the power: "
 newLine: .asciiz "\n"
 erroMessage: .asciiz "The power is negative."
-.globl main
-
 .text
-power:
-	addi $sp, $sp, -4
-	sw $ra, 0($sp)
-	blt $s2 , $zero , ExitError
-	bge $s2 , $zero , loop
-	loop:
-		bge $t0 , $s2 , Exit
-		mul $t3 , $t3 , $s1
-		addi $t0 , $t0 , 1
-		j loop
-
-	ExitError:
-		la $a0 , erroMessage
-		li $v0 , 4
-		syscall
-		li $v0 , 10
-		syscall
-
-	Exit:
-		add $a0 , $t3 , $zero
-		li $v0, 1
-		syscall
-	lw $ra, 0($sp)
-	addi $sp, $sp, 4
-	jr $ra
-
+.globl main
 main:
 
 	li $s1 , 0
@@ -65,9 +40,26 @@ main:
 	li $t2 , 0
 	li $t3 , 1
 
-	#Arch of MIPS make this code inefficent as I didn't send the parameters in $a registers
-	jal power
-	
+	blt $s2 , $zero , ExitError
+	bge $s2 , $zero , loop
+ 
+	loop:
+		bge $t0 , $s2 , Exit
+		mul $t3 , $t3 , $s1
+		addi $t0 , $t0 , 1
+		j loop
+
+	ExitError:
+		la $a0 , erroMessage
+		li $v0 , 4
+		syscall
+		li $v0 , 10
+		syscall
+
+	Exit:
+		add $a0 , $t3 , $zero
+		li $v0, 1
+		syscall
 		
 	li $v0 , 10
 	syscall

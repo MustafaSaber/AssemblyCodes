@@ -1,3 +1,5 @@
+
+#A program to count digits of a number.
 .data
 scan: .asciiz "Enter the number: "
 answer: .asciiz "Number of digits = "
@@ -8,8 +10,8 @@ newLine: .asciiz "\n"
 countDigits:
 	addi $sp, $sp, -4
 	sw $s1, 0($sp)
-	blt $s1, $zero, Abs
-	beq $s1, $zero, caseZero
+	blt $s1, $zero, Abs #to handle the case of negative numbers
+	beq $s1, $zero, caseZero #to handle case of entering just zero
 
 	caseZero:
 		addi $t2, $t2, 1
